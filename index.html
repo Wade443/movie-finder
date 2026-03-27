@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Movie Finder</h1>
+
+    <section class="hero">
+      <div class="hero-overlay">
+        <h2 id="heroTitle">Featured Movie</h2>
+        <p id="heroYear"></p>
+      </div>
+    </section>
+
+    <form id="searchForm">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search for a movie..."
+        required
+      />
+      <button type="submit">Search</button>
+    </form>
+
+    <p id="loading" class="hidden">Loading...</p>
+    <p id="message"></p>
+
+    <div id="movieList" class="movie-grid"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
