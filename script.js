@@ -12,10 +12,8 @@ const movieModal = document.getElementById("movieModal");
 const modalBody = document.getElementById("modalBody");
 const closeModal = document.getElementById("closeModal");
 
-// Replace this with your real OMDb API key
 const apiKey = "dcfb25eb";
 
-// Some movie titles for the changing preview
 const featuredMovies = [
   "Inception",
   "Interstellar",
