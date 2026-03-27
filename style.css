@@ -27,6 +27,7 @@ h1 {
   margin-bottom: 30px;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
   transition: opacity 1s ease-in-out, background-image 1s ease-in-out;
   opacity: 1;
@@ -94,10 +95,6 @@ button:hover {
   opacity: 0.95;
 }
 
-.hidden {
-  display: none;
-}
-
 #message {
   color: #ddd;
 }
@@ -115,6 +112,7 @@ button:hover {
   border-radius: 16px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s ease;
+  cursor: pointer;
 }
 
 .movie-card:hover {
@@ -138,6 +136,79 @@ button:hover {
   color: #f1dede;
 }
 
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  color: white;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 18px;
+  padding: 24px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.close-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #8b0000;
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.close-button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.modal-movie {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.modal-movie img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.modal-info h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.modal-info p {
+  margin: 8px 0;
+  color: #f1dede;
+  line-height: 1.5;
+}
+
+.hidden {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
   .hero {
     height: 280px;
@@ -150,5 +221,9 @@ button:hover {
   input {
     width: 100%;
     max-width: 320px;
+  }
+
+  .modal-movie {
+    grid-template-columns: 1fr;
   }
 }

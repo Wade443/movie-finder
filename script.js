@@ -8,6 +8,10 @@ const hero = document.querySelector(".hero");
 const heroTitle = document.getElementById("heroTitle");
 const heroYear = document.getElementById("heroYear");
 
+const movieModal = document.getElementById("movieModal");
+const modalBody = document.getElementById("modalBody");
+const closeModal = document.getElementById("closeModal");
+
 // Replace this with your real OMDb API key
 const apiKey = "dcfb25eb";
 
@@ -77,9 +81,78 @@ function displayMovies(movies) {
       <p><strong>Type:</strong> ${movie.Type}</p>
     `;
 
+    movieCard.addEventListener("click", function () {
+      getMovieDetails(movie.imdbID);
+    });
+
     movieList.appendChild(movieCard);
   });
 }
+
+async function getMovieDetails(imdbID) {
+  loading.classList.remove("hidden");
+  message.textContent = "";
+
+  try {
+    const response = await fetch(
+      `https://www.omdbapi.com/?i=${imdbID}&plot=full&apikey=${apiKey}`
+    );
+    const data = await response.json();
+
+    loading.classList.add("hidden");
+
+    if (data.Response === "False") {
+      message.textContent = "Could not load movie details.";
+      return;
+    }
+
+    openModal(data);
+  } catch (error) {
+    loading.classList.add("hidden");
+    message.textContent = "Something went wrong while loading details.";
+    console.error(error);
+  }
+}
+
+function openModal(movie) {
+  const poster =
+    movie.Poster !== "N/A"
+      ? movie.Poster
+      : "https://via.placeholder.com/300x450?text=No+Image";
+
+  modalBody.innerHTML = `
+    <div class="modal-movie">
+      <img src="${poster}" alt="${movie.Title}">
+      <div class="modal-info">
+        <h2>${movie.Title}</h2>
+        <p><strong>Year:</strong> ${movie.Year}</p>
+        <p><strong>Genre:</strong> ${movie.Genre}</p>
+        <p><strong>IMDb Rating:</strong> ${movie.imdbRating}</p>
+        <p><strong>Plot:</strong> ${movie.Plot}</p>
+      </div>
+    </div>
+  `;
+
+  movieModal.classList.remove("hidden");
+}
+
+function closeMovieModal() {
+  movieModal.classList.add("hidden");
+}
+
+closeModal.addEventListener("click", closeMovieModal);
+
+movieModal.addEventListener("click", function (event) {
+  if (event.target === movieModal) {
+    closeMovieModal();
+  }
+});
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape" && !movieModal.classList.contains("hidden")) {
+    closeMovieModal();
+  }
+});
 
 async function loadFeaturedMovie(title) {
   try {
