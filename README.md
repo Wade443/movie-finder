@@ -22,3 +22,7 @@ OMDb API
 ## LIVE DEMO
 
 https://wade443.github.io/movie-finder/
+
+## VIDEO
+
+https://video.laurea.fi/media/Project+2/0_mob4vz3b
