@@ -25,6 +25,8 @@ const featuredMovies = [
   "Frozen"
 ];
 
+// Fetch movies from API
+
 searchForm.addEventListener("submit", async function (event) {
   event.preventDefault();
 
@@ -60,6 +62,8 @@ searchForm.addEventListener("submit", async function (event) {
   }
 });
 
+// Display movies on the page
+
 function displayMovies(movies) {
   movieList.innerHTML = "";
 
@@ -86,6 +90,8 @@ function displayMovies(movies) {
     movieList.appendChild(movieCard);
   });
 }
+
+// Get detailed movie info when clicking a card
 
 async function getMovieDetails(imdbID) {
   loading.classList.remove("hidden");
@@ -151,6 +157,8 @@ document.addEventListener("keydown", function (event) {
     closeMovieModal();
   }
 });
+
+// Update featured movie section
 
 async function loadFeaturedMovie(title) {
   try {
